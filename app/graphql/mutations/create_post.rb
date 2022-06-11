@@ -1,3 +1,4 @@
+# typed: true
 module Mutations
   class CreatePost < BaseMutation
     field :post, Types::Models::PostType, null: false

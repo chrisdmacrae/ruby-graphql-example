@@ -1,3 +1,4 @@
+# typed: false
 module Queries
   module AuthQuery
     def self.included(child_class)

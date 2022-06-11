@@ -1,3 +1,4 @@
+# typed: strict
 module Types::Models
   class PostType < BaseModelType
     field :id, ID, null: false

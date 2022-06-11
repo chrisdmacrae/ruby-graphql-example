@@ -1,3 +1,4 @@
+# typed: strict
 module Types::Internal
   class BaseObject < GraphQL::Schema::Object
     edge_type_class(BaseEdge)

@@ -1,3 +1,4 @@
+# typed: false
 class RailsGqlSchema < GraphQL::Schema
   query Types::QueryType
   mutation Types::MutationType

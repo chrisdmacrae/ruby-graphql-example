@@ -1,3 +1,4 @@
+# typed: false
 module Auth
   class CurrentUserField < Types::Internal::BaseField
     def initialize(*args, current_user: false, **kwargs, &block)

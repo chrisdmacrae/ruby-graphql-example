@@ -1,3 +1,4 @@
+# typed: true
 module Types
   class QueryType < Internal::BaseObject
     include Queries::AuthQuery

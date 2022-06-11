@@ -1,3 +1,4 @@
+# typed: false
 module Queries
   module PostsQuery
     def self.included(child_class)

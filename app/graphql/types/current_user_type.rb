@@ -1,3 +1,4 @@
+# typed: true
 module Types
   class CurrentUserType < Types::Models::UserType
     field :reset_password_token, String, null: true

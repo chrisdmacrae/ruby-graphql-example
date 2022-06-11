@@ -1,3 +1,4 @@
+# typed: false
 module Queries
   module CommentsQuery
     def self.included(child_class)

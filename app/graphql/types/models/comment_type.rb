@@ -1,3 +1,4 @@
+# typed: strict
 module Types::Models
   class CommentType < BaseModelType
     field :id, ID, null: false

@@ -1,3 +1,4 @@
+# typed: strict
 module Types::Models
   class UserType < BaseModelType
     field :id, ID, null: false
