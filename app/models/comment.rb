@@ -1,12 +1,16 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  message    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  post_id    :integer
 #
-class Post < ApplicationRecord
-  has_many :comments
+# Indexes
+#
+#  index_comments_on_post_id  (post_id)
+#
+class Comment < ApplicationRecord
 end

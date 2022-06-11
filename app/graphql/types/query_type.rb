@@ -1,11 +1,11 @@
 module Types
-  class QueryType < Types::Internal::BaseObject
-    field :post, PostType, null: true do
-      argument :id, ID, required: true
-    end
+  class QueryType < Internal::BaseObject
+    include Queries::PostsQuery
 
-    def post(id:)
-      Post.find(id)
+    field :example, String, null: false
+
+    def example
+      "foobar"
     end
   end
 end
