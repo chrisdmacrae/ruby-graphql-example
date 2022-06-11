@@ -1,5 +1,5 @@
 module Types
-  class QueryType < Types::BaseObject
+  class QueryType < Types::Internal::BaseObject
     field :post, PostType, null: true do
       argument :id, ID, required: true
     end

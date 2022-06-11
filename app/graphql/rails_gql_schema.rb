@@ -1,6 +1,6 @@
 class RailsGqlSchema < GraphQL::Schema
-  query GraphTypes::QueryType
-  mutation GraphTypes::MutationType
+  query Types::QueryType
+  mutation Types::MutationType
 
   # Resolves a graph id from an object passed to the graph
   #
