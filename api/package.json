@@ -1,8 +1,10 @@
 {
-  "name": "rails-gql-next.js-api",
+  "name": "api",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bundle exec rails server -p 3010 RAILS_ENV=development",
-    "start": "bundle exec rails server -p 3010 RAILS_ENV=production"
+    "postinstall": "./bin/setup",
+    "dev": "RAILS_ENV=development ./bin/bundle exec rails server -p 3010",
+    "start": "RAILS_ENV=production ./bin/bundle exec rails server -p 3010"
   }
 }
