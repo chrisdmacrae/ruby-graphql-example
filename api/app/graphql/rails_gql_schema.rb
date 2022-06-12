@@ -1,7 +1,9 @@
 # typed: false
 class RailsGqlSchema < GraphQL::Schema
+  use GraphQL::Subscriptions::ActionCableSubscriptions
   query Types::QueryType
   mutation Types::MutationType
+  subscription Types::SubscriptionType
 
   # Resolves a graph id from an object passed to the graph
   #

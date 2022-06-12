@@ -1,5 +1,12 @@
 {
-  "name": "rails-gql",
+  "name": "rails-gql-next.js",
   "private": true,
-  "dependencies": {}
+  "scripts": {
+    "dev": "yarn workspaces run dev",
+    "start": "yarn workspaces run start"
+  },
+  "workspaces": [
+    "api",
+    "client"
+  ]
 }
