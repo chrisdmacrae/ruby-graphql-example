@@ -3,18 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3011",
+    "postinstall": "echo \"All Set!\"",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev -p 3001",
     "build": "next build",
-    "prestart": "yarn build -p 3011",
+    "prestart": "yarn build -p 3001",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.6.7",
+    "@types/cookies": "^0.7.7",
+    "autoprefixer": "^10.4.8",
+    "cookies": "^0.8.0",
     "graphql": "^16.5.0",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "tailwindcss": "^3.1.7"
   },
   "devDependencies": {
     "@types/node": "17.0.42",

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "./bin/setup",
-    "dev": "RAILS_ENV=development ./bin/bundle exec rails server -p 3010",
-    "start": "RAILS_ENV=production ./bin/bundle exec rails server -p 3010"
+    "dev": "RAILS_ENV=development ./bin/bundle exec rails server -p 3000",
+    "start": "RAILS_ENV=production ./bin/bundle exec rails server -p 3000"
   }
 }

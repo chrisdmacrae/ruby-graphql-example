@@ -2,6 +2,7 @@
   "name": "rails-gql-next.js",
   "private": true,
   "scripts": {
+    "postinstall": "yarn workspaces run postinstall",
     "dev": "npm-run-all --parallel dev:*",
     "dev:api": "yarn workspace api run dev",
     "dev:client": "yarn workspace client run dev",

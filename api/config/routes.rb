@@ -1,11 +1,16 @@
-# typed: ignore
-Rails.application.routes.draw do
-  devise_for :users
+# frozen_string_literal: true
 
-  if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+Rails.application.routes.draw do
+  devise_for :users, controllers: { sessions: 'sessions', omniauth_callbacks: 'users/omniauth' }
+
+  devise_scope :user do
+    get :sign_in, to: 'sessions#create'
+    delete 'sign_out', to: 'sessions#destroy'
   end
 
-  post "/graphql", to: "graphql#execute"
+  scope :api do
+    post :graphql, to: 'graphql#execute'
 
+    mount GraphiQL::Rails::Engine, at: :graphiql, graphql_path: '/api/graphql' if Rails.env.development?
+  end
 end

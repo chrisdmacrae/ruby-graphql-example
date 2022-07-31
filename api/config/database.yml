@@ -22,4 +22,10 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: myapp
+  pool: 5
+  user: geemail
+  host: <%= ENV.fetch('RAILS_DB_HOST') { "localhost" } %>
+  password: <%= ENV.fetch('RAILS_DB_PASSWORD') { "" } %>

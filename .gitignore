@@ -5,3 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 .idea
 /node_modules
+.devcontainer/openssl.cnf
+.devcontainer/server.crt
+.devcontainer/server.csr
+.devcontainer/server.key

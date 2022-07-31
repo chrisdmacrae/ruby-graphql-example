@@ -1,0 +1,28 @@
+# openssl.cnf
+
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+[req_distinguished_name]
+countryName = CA
+countryName_default = CA
+stateOrProvinceName = Ontario
+stateOrProvinceName_default = Ontario
+localityName = Toronto
+localityName_default = Toronto
+organizationalUnitName = Calibrated
+organizationalUnitName_default = Calibrated
+commonName = localhost
+commonName_max = 64
+
+[ v3_req ]
+# Extensions to add to a certificate request
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = dev.calibrated.io
+DNS.2 = localhost
+DNS.3 = 127.0.0.1
+DNS.4 = 0.0.0.0

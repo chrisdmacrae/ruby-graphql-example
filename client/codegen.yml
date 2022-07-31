@@ -1,0 +1,14 @@
+overwrite: true
+schema: "https://localhost:3001"
+documents:
+  - "./src/**/*.{jsx,ts,tsx}"
+generates:
+  src/lib/graph/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+      - "fragment-matcher"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

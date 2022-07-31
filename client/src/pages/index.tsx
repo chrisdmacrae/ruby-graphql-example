@@ -1,0 +1,45 @@
+import type {GetServerSideProps, GetStaticProps, NextPage} from 'next'
+import { gql } from "@apollo/client";
+
+import {createNextServerClient} from "../lib/apollo/server";
+import {Home, HomeProps} from "../views/home";
+import {ServerNotFound} from "../lib/server/not-found";
+
+export const HomePage: NextPage<HomeProps> = (props) => (
+    <Home {...props} />
+)
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const {client, xsrfToken} = createNextServerClient(ctx.req, ctx.res)
+    const {data} = await client.query({
+      query: gql`
+          query Posts {
+            currentUser {
+              email
+            }
+            posts {
+              id
+              _id
+              name
+            }
+          }
+        `,
+    })
+
+    return {
+      props: {
+        currentUser: data.currentUser,
+        xsrfToken: xsrfToken,
+        posts: data.posts,
+      },
+    }
+  }
+  catch (error) {
+    console.error(error)
+
+    return ServerNotFound()
+  }
+}
+
+export default HomePage
