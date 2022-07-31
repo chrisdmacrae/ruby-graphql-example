@@ -1,5 +1,4 @@
 import styles from '../styles/Home.module.css'
-import Head from "next/head";
 import Image from "next/image";
 import {BaseLayout} from "../layouts/base";
 
@@ -7,13 +6,10 @@ export type HomeProps = {
     posts: any[]
 }
 
-export const Home: React.FC<HomeProps> = ({posts}) => {
+export const Home: React.FC<HomeProps> = ({posts, currentUser}) => {
     return (
         <BaseLayout>
             <div className={styles.container}>
-                <Head>
-
-                </Head>
 
                 <main className={styles.main}>
                     <h1 className={styles.title}>
@@ -24,6 +20,8 @@ export const Home: React.FC<HomeProps> = ({posts}) => {
                         Get started by editing{' '}
                         <code className={styles.code}>pages/index.tsx</code>
                     </p>
+
+                    <p>{JSON.stringify(currentUser)}</p>
 
                     <div className={styles.grid}>
                         {posts?.map(post => (

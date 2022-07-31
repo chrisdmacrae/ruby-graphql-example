@@ -1,6 +1,3 @@
-# typed: strict
-Spring.application_root='./'
-
 %w[
   .ruby-version
   .rbenv-vars

@@ -2,6 +2,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Allow auth across subdomains
+  config.session_store :cookie_store, key: '_application_devise_session', domain: ENV['APP_HOST']
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
