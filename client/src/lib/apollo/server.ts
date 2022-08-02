@@ -8,7 +8,6 @@ type createServerClientOptions = {
 
 export const createNextServerClient = (req: any, res: any) => {
     const cookies = new Cookies(req, res)
-    const accessToken = cookies.get('GEEMAIL-ACCESS-TOKEN') || null
     const xsrfCookie = cookies.get('XSRF-TOKEN')
     const xsrfToken = xsrfCookie ? decodeURIComponent(xsrfCookie) : null
     const headers = {
@@ -16,7 +15,7 @@ export const createNextServerClient = (req: any, res: any) => {
         ['X-XSRF-TOKEN']: xsrfToken
     }
 
-    return { client: createServerClient({ headers }), xsrfToken, accessToken }
+    return createServerClient({ headers })
 }
 
 export const createServerClient = (options: createServerClientOptions = {}) => {

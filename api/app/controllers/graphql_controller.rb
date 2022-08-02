@@ -23,7 +23,8 @@ class GraphqlController < ApplicationController
     {
       request: request,
       current_user: current_user,
-      current_session: user_session
+      current_session: user_session,
+      xsrf_token: form_authenticity_token
     }
   end
 

@@ -8,15 +8,39 @@ gem 'psych', '< 4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.5'
+
+# Use ActiveStorage variant
+# gem 'mini_magick', '~> 4.8'
+
+# Tailwind CSS
+gem "tailwindcss-rails", "~> 2.0"
+
+# Active Resource
+gem 'activeresource'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+
+# Use postgres as the database for Active Record in production
+gem 'pg', group: :production
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+
+# Control cross-origin rules for the server
+gem "rack-cors", "~> 1.1"
+
+# Env
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production
+# and as the Rails cache layer
 gem 'redis', '~> 4.0'
 gem 'redis-namespace'
 gem 'redis-rails'
@@ -24,37 +48,9 @@ gem 'redis-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
-# Control cross-origin rules
-gem "rack-cors", "~> 1.1"
-
 # Ruby GraphQL
 gem "graphql"
 gem 'graphiql-rails', group: :development
-
-# Tailwind CSS
-gem "tailwindcss-rails", "~> 2.0"
-
-# Better printing
-gem "awesome_print", "~> 1.9"
-
-# Linting
-gem "rubocop", "~> 1.31"
-
-# Gmail API
-gem 'googleauth'
-gem 'google-apis-gmail_v1'
-
-# Active Resource
-gem 'activeresource'
 
 # Devise authentication
 gem "devise", github: "heartcombo/devise", branch: "main"
@@ -62,17 +58,17 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
-# Env
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+# Oauth access
+gem 'doorkeeper'
 
-group :production do
-  gem 'pg'
-end
+# Plaid for banking access
+gem "plaid"
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+# Better printing
+gem "awesome_print", "~> 1.9"
+
+# Linting
+gem "rubocop", "~> 1.31"
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -92,6 +88,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

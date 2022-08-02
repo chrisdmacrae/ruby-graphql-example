@@ -12,10 +12,12 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  failed_attempts        :integer          default(0), not null
+#  is_admin               :boolean
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
 #  photo                  :string
+#  plaid_access_token     :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -31,12 +33,32 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :access_grants,
+           class_name: 'Doorkeeper::AccessGrant',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all # or :destroy if you need callbacks
+
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all # or :destroy if you need callbacks
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :lockable, :trackable,
          :omniauthable, omniauth_providers: []
+
+  def is_admin?
+    is_admin
+  end
+
+  def add_plaid_access_token(access_token, session)
+    session[:access_token] = access_token
+    self.plaid_access_token = access_token
+    save!
+  end
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|

@@ -5,5 +5,9 @@ module Mutations
     field_class ::Types::Internal::BaseField
     input_object_class ::Types::Internal::BaseInputObject
     object_class ::Types::Internal::BaseObject
+
+    def is_logged_in?
+      context[:current_user].present?
+    end
   end
 end

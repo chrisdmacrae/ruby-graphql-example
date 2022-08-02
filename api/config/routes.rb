@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'sessions', omniauth_callbacks: 'users/omniauth' }
+  use_doorkeeper
 
+  devise_for :users, controllers: { sessions: 'sessions', omniauth_callbacks: 'users/omniauth' }
   devise_scope :user do
     get :sign_in, to: 'sessions#create'
+    post :sign_in, to: 'sessions#create'
+    get 'sign_out', to: 'sessions#destroy'
     delete 'sign_out', to: 'sessions#destroy'
   end
 

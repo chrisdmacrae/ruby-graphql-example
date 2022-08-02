@@ -11,17 +11,13 @@ export const HomePage: NextPage<HomeProps> = (props) => (
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    const {client, xsrfToken} = createNextServerClient(ctx.req, ctx.res)
+    const client = createNextServerClient(ctx.req, ctx.res)
     const {data} = await client.query({
       query: gql`
-          query Posts {
+          query Home {
+            xsrfToken
             currentUser {
               email
-            }
-            posts {
-              id
-              _id
-              name
             }
           }
         `,
@@ -29,9 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return {
       props: {
-        currentUser: data.currentUser,
-        xsrfToken: xsrfToken,
-        posts: data.posts,
+        ...data
       },
     }
   }

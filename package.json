@@ -1,5 +1,5 @@
 {
-  "name": "rails-gql-next.js",
+  "name": "budget-buddy",
   "private": true,
   "scripts": {
     "postinstall": "yarn workspaces run postinstall",

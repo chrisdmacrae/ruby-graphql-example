@@ -2,11 +2,9 @@ import styles from '../styles/Home.module.css'
 import Image from "next/image";
 import {BaseLayout} from "../layouts/base";
 
-export type HomeProps = {
-    posts: any[]
-}
+export type HomeProps = {}
 
-export const Home: React.FC<HomeProps> = ({posts, currentUser}) => {
+export const Home: React.FC<HomeProps> = (_props) => {
     return (
         <BaseLayout>
             <div className={styles.container}>
@@ -20,17 +18,6 @@ export const Home: React.FC<HomeProps> = ({posts, currentUser}) => {
                         Get started by editing{' '}
                         <code className={styles.code}>pages/index.tsx</code>
                     </p>
-
-                    <p>{JSON.stringify(currentUser)}</p>
-
-                    <div className={styles.grid}>
-                        {posts?.map(post => (
-                            <a href="src/pages/index#" key={post._id} className={styles.card}>
-                                <h2>{post.name} &rarr;</h2>
-                                <p>{post.id} : {post._id}</p>
-                            </a>
-                        ))}
-                    </div>
                 </main>
 
                 <footer className={styles.footer}>

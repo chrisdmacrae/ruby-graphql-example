@@ -1,5 +1,5 @@
 # typed: true
-module Types
+module Types::Models
   class CurrentUserType < Types::Models::UserType
     field :reset_password_token, String, null: true
     field :reset_password_sent_at, GraphQL::Types::ISO8601DateTime, null: true

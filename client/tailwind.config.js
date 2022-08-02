@@ -2,9 +2,11 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  safelist: [{
-    pattern: /./
-  }],
+  safelist: [
+    { pattern: /flex-*/, },
+    { pattern: /gap-*/, },
+    { pattern: /md:flex-*/ }
+  ],
   content: [
     './src/**/*.tsx'
   ],
