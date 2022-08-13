@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_13_152729) do
+ActiveRecord::Schema.define(version: 2022_08_13_203614) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "account_id"
@@ -28,6 +28,23 @@ ActiveRecord::Schema.define(version: 2022_08_13_152729) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "budget_categories", force: :cascade do |t|
+    t.integer "budget_id"
+    t.integer "account_id"
+    t.decimal "total"
+    t.datetime "end_date"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_budget_categories_on_account_id"
+    t.index ["budget_id"], name: "index_budget_categories_on_budget_id"
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -86,6 +103,15 @@ ActiveRecord::Schema.define(version: 2022_08_13_152729) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "budget_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["budget_category_id"], name: "index_transactions_on_budget_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "photo"
     t.string "email", default: "", null: false
@@ -113,6 +139,7 @@ ActiveRecord::Schema.define(version: 2022_08_13_152729) do
     t.string "last_name"
     t.integer "phone_number"
     t.datetime "phone_verified_at"
+    t.datetime "email_verified_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -11,8 +11,17 @@ import {gql, useMutation} from "@apollo/client";
 export const Link: React.FC = () => {
     const {back, forward} = useGetStarted()
     const [verifyingBy, setVerifyingBy] = useState<"email" | "sms" | null>(null)
+
+    const [requestEmailCode] = useMutation(gql`
+        mutation RequestEmailVerificationCode {
+            requestEmailVerificationCode(input: {}) {
+                sent
+            }
+        }
+    `)
     const verifyByEmail = () => {
         setVerifyingBy("email")
+        requestEmailCode()
     }
 
     const [requestSmsCode] = useMutation(gql`

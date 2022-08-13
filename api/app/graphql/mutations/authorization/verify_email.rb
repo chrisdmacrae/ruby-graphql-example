@@ -1,5 +1,5 @@
 module Mutations::Authorization
-  class VerifyPhoneNumber < ::Mutations::BaseMutation
+  class VerifyEmail < ::Mutations::BaseMutation
     field :user, Types::Models::CurrentUserType, null: false
     field :verified, Boolean, null: false
 
@@ -8,10 +8,10 @@ module Mutations::Authorization
     def resolve(code:)
       user = context[:current_user]
 
-      res = Twilio::VerifyAdaptor.new.verify("+#{user.phone_number}", code)
+      res = Twilio::VerifyAdaptor.new.verify(user.email, code)
 
       if res.valid
-        user.phone_verified_at = Time.zone.now
+        user.email_verified_at = Time.zone.now
         user.save!
       end
 

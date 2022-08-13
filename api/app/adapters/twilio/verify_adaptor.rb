@@ -10,13 +10,19 @@ module Twilio
                         .services(Rails.application.credentials.dig(:twilio, :verify_sid))
     end
 
-    def request_phone_verify_code(to)
-      return unless to.present?
+    def request_phone_verify_code(phone_number)
+      return unless phone_number.present?
 
-      @service.verifications.create(to: to, channel: 'sms')
+      @service.verifications.create(to: phone_number, channel: 'sms')
     end
 
-    def verify_phone(to = nil, code = nil)
+    def request_email_verify_code(email)
+      return unless email.present?
+
+      @service.verifications.create(to: email, channel: 'email')
+    end
+
+    def verify(to = nil, code = nil)
       return unless to.present?
 
       @service.verification_checks.create(to: to, code: code)

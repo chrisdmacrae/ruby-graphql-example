@@ -10,7 +10,8 @@ module Types
     field :sign_up, mutation: Mutations::Authorization::SignUp
     field :request_phone_verification_code, mutation: Mutations::Authorization::RequestPhoneVerificationCode
     field :verify_phone_number, mutation: Mutations::Authorization::VerifyPhoneNumber
-
+    field :request_email_verification_code, mutation: Mutations::Authorization::RequestEmailVerificationCode
+    field :verify_email, mutation: Mutations::Authorization::VerifyEmail
 
     ##########
     # Banking
