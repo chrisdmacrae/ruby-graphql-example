@@ -21,8 +21,8 @@ export const Stack = ({ as = 'div', align = 'left', valign = 'top', direction = 
     const flexJustify = flexDirection == "flex-row" ? ALIGN_CLASSES[valign] : VALIGN_CLASSES[align]
     // @ts-ignore
     const flexItems = flexDirection == "flex-row" ? VALIGN_CLASSES[align] : ALIGN_CLASSES[align]
-    const width = fluid ? 'w-full' : 'w-fit '
-    const height = fluid ? 'h-full' : 'h-fit'
+    const width = fluid ? 'min-w-full' : 'w-fit '
+    const height = fluid ? 'min-h-full' : 'h-fit'
     const El = as as any
 
     return (

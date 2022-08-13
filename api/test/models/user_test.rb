@@ -12,10 +12,14 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  failed_attempts        :integer          default(0), not null
+#  first_name             :string
 #  is_admin               :boolean
+#  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
+#  phone_number           :integer
+#  phone_verified_at      :datetime
 #  photo                  :string
 #  plaid_access_token     :string
 #  remember_created_at    :datetime

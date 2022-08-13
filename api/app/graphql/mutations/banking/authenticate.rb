@@ -2,7 +2,7 @@ module Mutations::Banking
   class Authenticate < Mutations::BaseMutation
     argument :public_token, String, required: true
 
-    field :authenticated, String, null: false
+    field :user, Types::Models::CurrentUserType, null: false
 
     def ready?(**args)
       super(**args)
@@ -17,12 +17,12 @@ module Mutations::Banking
 
       user.add_plaid_access_token(access_token, session)
 
-      { authenticated: true }
+      { user: user }
     rescue StandardError => e
       Rails.logger.error(e.message)
       Rails.logger.error(e.backtrace)
 
-      { authenticated: false }
+      { user: user }
     end
   end
 end

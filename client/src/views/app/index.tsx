@@ -1,6 +1,6 @@
 import {AppLayout} from "../../layouts/app";
 import {Heading} from "../../components/heading";
-import {Text} from "../../components/text";
+import {Body} from "../../components/text";
 import {Stack} from "../../components/stack";
 import {Card} from "../../components/card";
 
@@ -19,18 +19,18 @@ export const App: React.FC = () => {
                             <Heading>Latest Bills</Heading>
                             <Stack direction="vertical" gap={3}>
                                 <Stack direction="horizontal" valign="middle" gap={3}>
-                                    <div className="w-10 h-10 bg-zinc-800"></div>
+                                    <div className="w-10 h-10 bg-zinc-600"></div>
                                     <div>
                                         <Heading level={4}>
                                             Tinder
                                         </Heading>
-                                        <Text>
+                                        <Body>
                                             13, Sep, 2021 at 5:41pm
-                                        </Text>
+                                        </Body>
                                     </div>
                                     <Stack direction="horizontal">
                                         <Card />
-                                        <Text>Entertainment</Text>
+                                        <Body>Entertainment</Body>
                                     </Stack>
                                     <div>
                                         <Heading level={5}>
@@ -39,8 +39,6 @@ export const App: React.FC = () => {
                                     </div>
                                 </Stack>
                             </Stack>
-                        </Stack>
-                        <Stack direction="vertical">
                         </Stack>
                     </Stack>
                 )

@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_01_025434) do
+ActiveRecord::Schema.define(version: 2022_08_13_152729) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "account_id"
+    t.decimal "account_type"
+    t.string "account_subtype"
+    t.string "name"
+    t.string "brand_name"
+    t.decimal "mask"
+    t.decimal "institution"
+    t.decimal "current_balance"
+    t.decimal "available_balance"
+    t.string "currency_code"
+    t.decimal "limit"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "message"
@@ -91,6 +109,10 @@ ActiveRecord::Schema.define(version: 2022_08_01_025434) do
     t.datetime "updated_at", null: false
     t.boolean "is_admin"
     t.string "plaid_access_token"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "phone_number"
+    t.datetime "phone_verified_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

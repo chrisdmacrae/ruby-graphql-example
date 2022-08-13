@@ -3,49 +3,38 @@ import {useGetStarted} from "../../../view-models/get-started";
 import {AppLayout} from "../../../layouts/app";
 import {Stack} from "../../../components/stack";
 import {Heading} from "../../../components/heading";
-import {Card} from "../../../components/card";
+import {Body} from "../../../components/text";
 
 export const GetStarted = () => {
-    const {data, steps, currentStep, currentStepIndex, back, forward} = useGetStarted()
+    const {data, steps, currentStep, currentStepIndex} = useGetStarted()
     const Step = dynamic(() => import(`./steps/${currentStep.slug}`))
 
     return (
         <AppLayout>
             {{
                 main: (
-                    <div className="h-full flex flex-col justify-start pb-8">
-                        <Stack direction="vertical" align="between">
+                    <Stack valign="top" className="pb-8 basis-full">
+                        <Stack direction="vertical" align="between" valign="top" gap={6} className="h-full">
                             <Step {...data} />
-                            <Card>
-                                <Stack align="between">
-                                    <button onClick={() => back()}>
-                                        {currentStepIndex !== 0 && (
-                                            <Heading level={4}>Previous</Heading>
-                                        )}
-                                    </button>
-                                    <button onClick={() => forward({})}>
-                                        {currentStepIndex < steps.length - 1 && (
-                                            <Heading level={4}>Next</Heading>
-                                        )}
-                                    </button>
-                                </Stack>
-                            </Card>
+                            <Stack align="center" className="md:hidden">
+                                <Body color="text-zinc-600">Step {currentStepIndex + 1} of {steps.length}</Body>
+                            </Stack>
                         </Stack>
-                    </div>
+                    </Stack>
                 ),
                 sidebar: (
-                    <Stack direction="vertical" gap={6}>
+                    <Stack direction="vertical" gap={6} className="hidden md:block">
                         <Heading level={3}>Table of Contents</Heading>
                         <Stack as="ol" direction="vertical" gap={2} className="list-decimal list-inside	">
                             {steps.map((step, i) => {
                                 if (i <= currentStepIndex) return (
-                                    <a href={`/app/get-started/${step.slug}`}>
+                                    <a href={`/app/get-started/${step.slug}`} key={step.slug}>
                                         <li className={i === currentStepIndex ? 'font-bold' : ''}>{step.label}</li>
                                     </a>
                                 )
 
                                 return (
-                                    <li>{step.label}</li>
+                                    <li key={step.slug}>{step.label}</li>
                                 )
                             })}
                         </Stack>

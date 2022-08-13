@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   scope :api do
     post :graphql, to: 'graphql#execute'
-
     mount GraphiQL::Rails::Engine, at: :graphiql, graphql_path: '/api/graphql' if Rails.env.development?
+
+    scope :webhooks do
+      post :plaid, to: 'plaid#webhook'
+      get :plaid, to: 'plaid#webhook' if Rails.env.development?
+    end
   end
 end

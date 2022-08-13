@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             `,
         })
 
-        if (data.currentUser) return ServerRedirect('/', 302)
+        if (data.currentUser) return ServerRedirect('/app', 302)
 
         return {
             props: {

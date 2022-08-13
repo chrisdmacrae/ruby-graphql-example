@@ -4,6 +4,7 @@ import {AuthProvider} from "../lib/auth-context";
 import {ApolloProvider} from "@apollo/client";
 import {createBrowserClient} from "../lib/apollo";
 import {useMemo} from "react";
+import {PlaidProvider} from "../view-models/plaid";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = useMemo(() => createBrowserClient({
@@ -16,7 +17,14 @@ function MyApp({ Component, pageProps }: AppProps) {
               currentUser={pageProps.currentUser}
               xsrfToken={pageProps.xsrfToken}
           >
-            <Component {...pageProps} />
+              {pageProps.currentUser && (
+                <PlaidProvider linkToken={pageProps.currentUser.linkToken}>
+                    <Component {...pageProps} />
+                </PlaidProvider>
+              )}
+              {!pageProps.currentUser && (
+                  <Component {...pageProps} />
+              )}
           </AuthProvider>
       </ApolloProvider>
   )

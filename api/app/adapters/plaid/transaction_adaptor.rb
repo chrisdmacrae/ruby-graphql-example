@@ -1,14 +1,17 @@
 module Plaid
   class TransactionAdaptor < BaseAdaptor
-    attr_accessor :access_token
+    attr_accessor :access_token, :user
 
     def initialize(user)
       super
 
+      @user = user
       @access_token = user.plaid_access_token
     end
 
     def page(offset: 0)
+      return [] unless access_token
+
       options_payload = {}
       options_payload[:offset] = offset
 
@@ -19,9 +22,13 @@ module Plaid
       request.options = options_payload
 
       client.transactions_get(request)
+    rescue Plaid::ApiError => e
+      AuthAdaptor.handle_auth_error(e, user)
     end
 
     def all
+      return [] unless access_token
+
       response = page
       transactions = response.transactions
 
@@ -32,6 +39,8 @@ module Plaid
       end
 
       transactions
+    rescue Plaid::ApiError => e
+      AuthAdaptor.handle_auth_error(e, user)
     end
   end
 end

@@ -6,6 +6,7 @@ import {ServerRedirect} from "../lib/server";
 import {PlaidProvider} from "../view-models/plaid";
 import {Plaid} from "../views/plaid";
 
+
 export const PlaidPage: NextPage = (props: any) => (
     <PlaidProvider linkToken={props.linkToken}>
         <Plaid {...props} />

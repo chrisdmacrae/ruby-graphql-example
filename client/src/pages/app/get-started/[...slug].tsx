@@ -4,18 +4,26 @@ import {GetStartedProvider, GetStartedProviderProps} from "../../../view-models/
 import {ServerNotFound} from "../../../lib/server/not-found";
 import {createNextServerClient} from "../../../lib/apollo/server";
 import {gql} from "@apollo/client";
+import {PlaidProvider} from "../../../view-models/plaid";
 
 const STEPS: GetStartedProviderProps['steps'] = [
-    { label: "Introduction", slug: "" },
-    { label: "Test", slug: "test" },
-    { label: "Test2", slug: "test-2" },
-    { label: "Test3", slug: "test-3" }
+    { label: "Introduction", slug: "", skip: ({currentUser}) => !!currentUser },
+    { label: "Your Personal Information", slug: "personal-information", skip: ({currentUser}) => !!currentUser },
+    { label: "Your Password", slug: "password", skip: ({currentUser}) => !!currentUser, redirect: ({email}) => email ? undefined : 'personal-information' },
+    { label: "Link your accounts", slug: "link", skip: ({currentUser}) => !!currentUser?.bankAuthorized },
+    { label: "You're all done", slug: "done", skip: ({currentUser}) => !!currentUser }
 ]
 
-export const GetStartedPage: NextPage = () => (
-    <GetStartedProvider steps={STEPS}>
-        <GetStarted />
-    </GetStartedProvider>
+export type GetStartedPageProps = {
+    currentUser: Record<string, any>
+}
+
+export const GetStartedPage: NextPage<GetStartedPageProps> = ({ currentUser }) => (
+    <PlaidProvider linkToken={currentUser?.linkToken}>
+        <GetStartedProvider steps={STEPS}>
+            <GetStarted />
+        </GetStartedProvider>
+    </PlaidProvider>
 )
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -27,6 +35,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
                     currentUser {
                         id
                         email
+                        linkToken
+                        bankAuthorized
                     }
                 }
             `

@@ -3,7 +3,8 @@ import {createContext} from "react";
 export type GetStartedStep = {
     label: string,
     slug: string,
-    skip?: (currenUser: any) => boolean
+    skip?: (data: Record<string, any>) => boolean
+    redirect?: (data: Record<string, any>) => string | undefined
 }
 
 export type GetStartedContext = {

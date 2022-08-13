@@ -1,15 +1,15 @@
 import {PropsWithChildren} from "react";
 
-export type TextProps = PropsWithChildren<{
+export type BodyProps = PropsWithChildren<{
     level?: number
     color?: string
 }>
 
-export const Text = ({ level = 2, color = "zinc-600", children }: TextProps) => {
+export const Body = ({ level = 2, color = "text-zinc-600", children }: BodyProps) => {
     const size = level <= 5 ? level : 5
 
     return (
-        <p className={`${TEXT_SIZES[size - 1]} text-${color}`}>
+        <p className={`${TEXT_SIZES[size - 1]} ${color}`}>
             {children}
         </p>
     )

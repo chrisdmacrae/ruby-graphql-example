@@ -15,7 +15,9 @@ export const PlaidProvider: React.FC<PlaidProviderProps> = ({ linkToken, childre
     const [authenticate, { data, error }] = useMutation(gql`
         mutation Authenticate($public_token: String!) {
             bankingAuthenticate(input: {publicToken: $public_token}) {
-                authenticated
+                user {
+                    bankAuthorized
+                }
             }
         }
     `)
@@ -34,7 +36,7 @@ export const PlaidProvider: React.FC<PlaidProviderProps> = ({ linkToken, childre
         exit,
         ready,
         error: authError,
-        authenticated: data?.bankingAuthenticate.authenticated ?? false
+        authenticated: data?.bankingAuthenticate.user.bankAuthorized ?? false
     }
 
     return (

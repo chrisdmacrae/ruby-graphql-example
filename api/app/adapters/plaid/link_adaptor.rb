@@ -4,13 +4,14 @@ module Plaid
       super
     end
 
-    def create(user)
+    def create(user, domain = nil)
       request = Plaid::LinkTokenCreateRequest.new({
         user: { :client_user_id => user.id.to_s},
         client_name: "My App",
         products: %w[auth transactions],
         country_codes: ['CA'],
-        language: 'en'
+        language: 'en',
+        webhook: domain ? "https://#{domain}/api/webhooks/plaid" : nil
       })
       response = client.link_token_create(request)
 

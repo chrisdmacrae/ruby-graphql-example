@@ -1,23 +1,24 @@
 import {HTMLAttributes, PropsWithChildren} from "react";
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & PropsWithChildren<{
+    type?: 'button' | 'submit'
     className?: string
-    variant?: "primary" | "secondary"
+    variant?: "primary" | "secondary" | "ghost"
     size?: "small" | "medium" | "large"
     fluid?: boolean
     disabled?: boolean
 }>
 
-export const Button = ({ className, fluid, disabled, variant = "primary", size = "medium", children, ...props }: ButtonProps) => {
+export const Button = ({ className, type = 'button', fluid, disabled, variant = "primary", size = "medium", children, ...props }: ButtonProps) => {
     const background = getBackground(variant)
     const padding = getPadding(size)
     const width = fluid ? 'w-full ' : 'w-fit '
-    const disabledClasses = disabled ? 'bg-gray-500 ' : `${background} active:scale-75 cursor-pointer `
+    const disabledClasses = disabled && variant !== 'ghost' ? 'bg-gray-500 ' : `${background} active:scale-75 cursor-pointer text-zinc-400`
 
     return (
         <button
-            type="button"
-            className={`${className} ${disabledClasses} ${width} ${padding} font-bold text-white rounded-full focus:outline-none focus:shadow-outline transition-all transform transform-gpu`}
+            type={type}
+            className={`${width} ${padding} font-bold text-white focus:outline-none focus:shadow-outline transition-all transform transform-gpu ${disabledClasses} ${className} `}
             disabled={disabled || false}
             {...props}
         >
@@ -29,9 +30,11 @@ export const Button = ({ className, fluid, disabled, variant = "primary", size =
 function getBackground(variant: ButtonProps['variant']) {
     switch (variant) {
         case "primary":
-            return 'bg-indigo-500 hover:bg-indigo-700 '
+            return 'bg-zinc-600 hover:bg-zinc-700 '
         case "secondary":
-            return 'bg-indigo-300 hover:bg-indigo-400 '
+            return 'bg-zinc-600 hover:bg-zinc-400 '
+        case "ghost":
+            return 'bg-transparent'
     }
 }
 
