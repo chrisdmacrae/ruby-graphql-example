@@ -6,6 +6,7 @@ module Mutations::Authorization
     argument :first_name, String, required: true
     argument :last_name, String, required: true
     argument :password, String, required: true
+    argument :phone_number, String, required: true
 
     def ready?(**args)
       true
@@ -19,7 +20,8 @@ module Mutations::Authorization
                  email: email,
                  first_name: first_name,
                  last_name: last_name,
-                 password: password
+                 password: password,
+                 phone_number: phone_number,
                )
              end
 

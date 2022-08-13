@@ -1,0 +1,2 @@
+class MonthlyPaycheckBudget < Budget
+end

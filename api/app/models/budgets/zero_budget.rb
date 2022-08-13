@@ -1,0 +1,2 @@
+class ZeroBudget < Budget
+end

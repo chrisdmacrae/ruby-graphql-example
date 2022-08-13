@@ -27,9 +27,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
                         email
                         linkToken
                         bankAuthorized
-                        balance
-                }
-            `
+                    }
+                    accounts
+                    balances   
+                }         
+                `
         })
 
         if (!data.currentUser) return ServerRedirect('/sign-in', 302)

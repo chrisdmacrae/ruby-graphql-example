@@ -1,0 +1,2 @@
+class BiWeeklyPaycheckBudget < Budget
+end

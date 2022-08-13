@@ -27,7 +27,8 @@ export const Index: React.FC = () => {
                     ...formData,
                     firstName: data.first_name,
                     lastName: data.last_name,
-                    email: data.email
+                    email: data.email,
+                    phoneNumber: data.phone_number
                 }
             })
         } catch (error) {

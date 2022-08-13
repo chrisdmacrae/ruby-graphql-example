@@ -10,6 +10,7 @@ const STEPS: GetStartedProviderProps['steps'] = [
     { label: "Introduction", slug: "", skip: ({currentUser}) => !!currentUser },
     { label: "Your Personal Information", slug: "personal-information", skip: ({currentUser}) => !!currentUser },
     { label: "Your Password", slug: "password", skip: ({currentUser}) => !!currentUser, redirect: ({email}) => email ? undefined : 'personal-information' },
+    { label: "Verify Your Identity", slug: "verify-identity", skip: ({currentUser}) => !!currentUser?.phoneVerifiedAt },
     { label: "Link your accounts", slug: "link", skip: ({currentUser}) => !!currentUser?.bankAuthorized },
     { label: "You're all done", slug: "done", skip: ({currentUser}) => !!currentUser }
 ]
@@ -37,6 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
                         email
                         linkToken
                         bankAuthorized
+                        phoneVerifiedAt
                     }
                 }
             `

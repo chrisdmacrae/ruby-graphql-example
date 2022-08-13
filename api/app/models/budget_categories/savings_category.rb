@@ -1,0 +1,2 @@
+class SavingsCategory < BudgetCategory
+end

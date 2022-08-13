@@ -3,18 +3,28 @@ import {Heading} from "../../components/heading";
 import {Body} from "../../components/text";
 import {Stack} from "../../components/stack";
 import {Card} from "../../components/card";
+import {BalancePresenter} from "../../presenters/balance-presenter";
 
-export const App: React.FC = () => {
+export const App: React.FC = ({ accounts, balances }) => {
+    const viewableBalances = BalancePresenter(balances)
+
     return (
         <AppLayout>
             {{
                 main: (
                     <Stack direction="horizontal" gap={6}>
                         <Stack direction="vertical" gap={3}>
-                            <Heading>Savings</Heading>
-                            <Card>
-                                <Heading level={3}></Heading>
-                            </Card>
+                            <Heading>Current Balance</Heading>
+                            <Stack direction="horizontal" align="between" gap={6}>
+                                <Card>
+                                    <Heading level={3}>Available</Heading>
+                                    <Heading level={2}>{viewableBalances.available}</Heading>
+                                </Card>
+                                <Card>
+                                    <Heading level={3}>Current</Heading>
+                                    <Heading level={2}>{viewableBalances.current}</Heading>
+                                </Card>
+                            </Stack>
 
                             <Heading>Latest Bills</Heading>
                             <Stack direction="vertical" gap={3}>

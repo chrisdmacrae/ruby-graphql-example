@@ -39,13 +39,22 @@ export const Index: React.FC = () => {
                             </Field>
                         <label htmlFor="email">Email:</label>
                         <Field name="email" validate={(val) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(val) ? undefined : 'Must provide an email'}>
-                                {({input, meta}) => (
-                                    <>
-                                        <input {...input} disabled={submitting} type="email" id="email" className="w-full md:w-96 px-4 py-2 border-2 border-zinc-600" />
-                                        {meta.touched && meta.error && <Body color="text-red-400">{meta.error}</Body>}
-                                    </>
-                                )}
-                            </Field>
+                            {({input, meta}) => (
+                                <>
+                                    <input {...input} disabled={submitting} type="email" id="email" className="w-full md:w-96 px-4 py-2 border-2 border-zinc-600" />
+                                    {meta.touched && meta.error && <Body color="text-red-400">{meta.error}</Body>}
+                                </>
+                            )}
+                        </Field>
+                        <label htmlFor="phone">Phone:</label>
+                        <Field name="phone_number" validate={required}>
+                            {({input, meta}) => (
+                                <>
+                                    <input {...input} disabled={submitting} type="tel" id="phone_number" className="w-full md:w-96 px-4 py-2 border-2 border-zinc-600" />
+                                    {meta.touched && meta.error && <Body color="text-red-400">{meta.error}</Body>}
+                                </>
+                            )}
+                        </Field>
                     </Stack>
                     <Pagination
                         loading={submitting}

@@ -1,0 +1,2 @@
+class DebtCategory < BudgetCategory
+end

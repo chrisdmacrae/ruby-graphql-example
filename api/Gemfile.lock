@@ -310,6 +310,10 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     thread_safe (0.3.6)
+    twilio-ruby (5.70.1)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unicode-display_width (2.2.0)
@@ -367,6 +371,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tailwindcss-rails (~> 2.0)
+  twilio-ruby (~> 5.70)
   tzinfo-data
   web-console (>= 3.3.0)
 

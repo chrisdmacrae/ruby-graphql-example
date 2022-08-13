@@ -1,0 +1,2 @@
+class SemiMonthlyPaycheckBudget < Budget
+end
